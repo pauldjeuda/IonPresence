@@ -22,7 +22,7 @@ export class PresencePage {
   timestamp?: string;
   lastRecord?: PresenceRecord;
   userName?: string;
-  isInfoModalOpen: boolean = false;
+  isInfoPopupOpen = false;
 
   constructor(
     private locationService: LocationService,
@@ -33,16 +33,16 @@ export class PresencePage {
     this.userName = this.userService.getUserName() || undefined;
   }
 
-  openInfoModal() {
-    this.isInfoModalOpen = true;
+  openInfoPopup() {
+    this.isInfoPopupOpen = true;
   }
 
-  closeInfoModal() {
-    this.isInfoModalOpen = false;
+  closeInfoPopup() {
+    this.isInfoPopupOpen = false;
   }
 
-  onInfoModalDismiss() {
-    this.isInfoModalOpen = false;
+  get infoPopupMessage(): string {
+    return `Rayon autorisé: ${this.allowedRadius} m<br/>Heure d'arrivée: ${this.officeClock}<br/><br/>Vous devez pointer dans cette zone avant l'heure limite.`;
   }
 
   async checkPresence(): Promise<void> {
