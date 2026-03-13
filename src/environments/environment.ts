@@ -6,5 +6,5 @@ export const environment = {
   },
   allowedPresenceRadiusMeters: 50,
   workStartHour: 8,
-  workStartMinute: 0
+  workStartMinute: 30
 };

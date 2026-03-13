@@ -54,6 +54,15 @@ jobs:
       - name: Sync Capacitor Android project
         run: npx cap sync android
 
+      - name: Copy resources if they exist
+        run: |
+          if [ -d "resources" ]; then
+            echo "Resources directory found, copying to Android project..."
+            npx cap copy android
+          else
+            echo "No resources directory found, using default icons"
+          fi
+
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 

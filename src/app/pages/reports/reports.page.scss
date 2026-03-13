@@ -1,9 +1,9 @@
 :host {
-  --deep-bg: linear-gradient(180deg, #09111c 0%, #0d1830 100%);
-  --card-bg: rgba(255, 255, 255, 0.08);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --text-main: #f8fbff;
-  --text-soft: rgba(232, 242, 255, 0.72);
+  --deep-bg: $gradient-bottom;
+  --card-bg: $card-background;
+  --card-border: $card-border;
+  --text-main: $text-primary;
+  --text-soft: $text-secondary;
 }
 
 ion-toolbar {
@@ -29,8 +29,8 @@ ion-toolbar {
   border: 1px solid var(--card-border);
   border-radius: 28px;
   padding: 20px;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba($air-force-blue, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .eyebrow {
@@ -56,15 +56,21 @@ h1, h2 {
     border: none;
     border-radius: 16px;
     padding: 12px 14px;
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-soft);
+    background: rgba($platinum, 0.3);
+    color: $text-secondary;
     font-weight: 700;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba($platinum, 0.5);
+    }
   }
 
   .active {
-    background: rgba(95, 160, 255, 0.22);
-    color: white;
-    box-shadow: inset 0 0 0 1px rgba(129, 183, 255, 0.22);
+    background: rgba($primary-color, 0.15);
+    color: $primary-color;
+    box-shadow: inset 0 0 0 2px rgba($primary-color, 0.2);
+    font-weight: 800;
   }
 }
 
@@ -78,28 +84,30 @@ h1, h2 {
 .stat-box {
   border-radius: 20px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba($platinum, 0.3);
+  border: 1px solid rgba($air-force-blue, 0.1);
 
   span {
-    color: var(--text-soft);
+    color: $text-secondary;
     font-size: 0.9rem;
   }
 
   strong {
     display: block;
     margin-top: 10px;
-    color: white;
+    color: $text-primary;
     font-size: 1.35rem;
   }
 }
 
 .soft-blue {
-  background: rgba(101, 176, 255, 0.14);
+  background: rgba($primary-color, 0.15);
+  border: 1px solid rgba($primary-color, 0.2);
 }
 
 .soft-red {
-  background: rgba(255, 123, 141, 0.14);
+  background: rgba($danger-text, 0.15);
+  border: 1px solid rgba($danger-text, 0.2);
 }
 
 .card-head {
@@ -116,11 +124,12 @@ h1, h2 {
 }
 
 .empty-state {
-  color: var(--text-soft);
+  color: $text-secondary;
   padding: 18px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba($platinum, 0.2);
   text-align: center;
+  border: 1px dashed rgba($air-force-blue, 0.3);
 }
 
 .report-item {
@@ -128,15 +137,20 @@ h1, h2 {
   padding: 16px;
   margin-bottom: 12px;
   border: 1px solid transparent;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 
   &.late {
-    background: rgba(255, 122, 141, 0.12);
-    border-color: rgba(255, 158, 173, 0.18);
+    background: rgba($danger-text, 0.12);
+    border-color: rgba($danger-text, 0.2);
   }
 
   &.ontime {
-    background: rgba(93, 161, 255, 0.12);
-    border-color: rgba(125, 181, 255, 0.18);
+    background: rgba($success-text, 0.12);
+    border-color: rgba($success-text, 0.2);
   }
 }
 
@@ -148,13 +162,13 @@ h1, h2 {
 }
 
 .report-main strong {
-  color: white;
+  color: $text-primary;
 }
 
 .report-main p,
 .report-subline {
   margin: 6px 0 0;
-  color: var(--text-soft);
+  color: $text-secondary;
   font-size: 0.88rem;
 }
 
@@ -163,10 +177,11 @@ h1, h2 {
   white-space: nowrap;
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  color: white;
+  background: rgba($primary-color, 0.15);
+  color: $primary-color;
   font-weight: 700;
   font-size: 0.82rem;
+  border: 1px solid rgba($primary-color, 0.2);
 }
 
 .report-subline {
@@ -175,8 +190,8 @@ h1, h2 {
 }
 
 .app-footer ion-toolbar {
-  --background: rgba(9, 15, 28, 0.92);
-  --border-color: transparent;
+  --background: rgba($white, 0.95);
+  --border-color: $card-border;
 }
 
 .footer-nav {
@@ -187,20 +202,26 @@ h1, h2 {
 
   a {
     text-decoration: none;
-    color: rgba(228, 238, 255, 0.7);
+    color: $text-secondary;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     padding: 10px;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba($platinum, 0.2);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba($platinum, 0.4);
+    }
   }
 
   .active-link {
-    color: white;
-    background: rgba(82, 148, 255, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(112, 173, 255, 0.2);
+    color: $primary-color;
+    background: rgba($primary-color, 0.1);
+    box-shadow: inset 0 0 0 2px rgba($primary-color, 0.2);
+    font-weight: 600;
   }
 
   ion-icon {

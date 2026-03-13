@@ -1,0 +1,238 @@
+@import "../../../theme/variables";
+
+:host {
+  --welcome-bg: $gradient-bottom;
+}
+
+.welcome-content {
+  --background: var(--welcome-bg);
+}
+
+.welcome-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.logo-container {
+  width: 120px;
+  height: 120px;
+  background: $gradient-radial;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 
+    0 8px 32px rgba($air-force-blue, 0.3),
+    inset 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.logo-icon {
+  font-size: 3.5rem;
+  color: $white;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: $text-primary;
+  margin: 0 0 8px;
+  background: $gradient-right;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin: 0;
+  font-weight: 500;
+}
+
+.welcome-card {
+  background: rgba($white, 0.95);
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 
+    0 20px 60px rgba($air-force-blue, 0.2),
+    0 8px 24px rgba($air-force-blue, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($platinum, 0.8);
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.welcome-icon {
+  font-size: 3rem;
+  color: $primary-color;
+  margin-bottom: 16px;
+}
+
+.welcome-header h2 {
+  font-size: 1.8rem;
+  color: $text-primary;
+  margin: 0;
+  font-weight: 700;
+}
+
+.welcome-text {
+  text-align: center;
+  color: $text-secondary;
+  font-size: 1rem;
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+.input-section {
+  margin-bottom: 32px;
+}
+
+.custom-input {
+  --background: rgba($platinum, 0.3);
+  --border-color: rgba($air-force-blue, 0.2);
+  --border-radius: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 56px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    --background: rgba($platinum, 0.5);
+    --border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  ion-icon {
+    color: $primary-color;
+    font-size: 1.5rem;
+  }
+
+  ion-input {
+    --color: $text-primary;
+    --placeholder-color: $text-muted;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.start-button {
+  --background: $gradient-right;
+  --background-hover: darken($primary-color, 5%);
+  --background-activated: darken($primary-color, 10%);
+  --border-radius: 16px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba($primary-color, 0.3);
+  transition: all 0.3s ease;
+
+  &:not([disabled]):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba($primary-color, 0.4);
+  }
+
+  &[disabled] {
+    opacity: 0.6;
+    --background: rgba($platinum, 0.5);
+  }
+
+  ion-icon {
+    font-size: 1.3rem;
+    margin-left: 8px;
+  }
+}
+
+.footer-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231980BC" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+  animation: wave 10s linear infinite;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1440px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-shell {
+    padding: 16px;
+  }
+
+  .welcome-card {
+    padding: 30px 20px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .logo-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-icon {
+    font-size: 3rem;
+  }
+}

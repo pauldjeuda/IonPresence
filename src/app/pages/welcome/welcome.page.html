@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Bienvenue</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="welcome-content">
+  <div class="welcome-shell">
+    <!-- Logo centré -->
+    <div class="logo-section">
+      <div class="logo-container">
+        <ion-icon name="location-outline" class="logo-icon"></ion-icon>
+      </div>
+      <h1 class="app-title">Presence App</h1>
+      <p class="app-subtitle">Vérification de présence GPS</p>
+    </div>
+
+    <!-- Formulaire de bienvenue -->
+    <div class="welcome-card">
+      <div class="welcome-header">
+        <ion-icon name="person-outline" class="welcome-icon"></ion-icon>
+        <h2>Bonjour !</h2>
+      </div>
+      
+      <p class="welcome-text">
+        Renseignez votre nom pour commencer
+      </p>
+
+      <div class="input-section">
+        <ion-item class="custom-input">
+          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+          <ion-input 
+            type="text" 
+            placeholder="Votre nom"
+            [(ngModel)]="userName"
+            (keyup)="onKeyPress($event)"
+            autocomplete="name"
+            autocorrect="off"
+            autocapitalize="words">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button 
+        expand="block" 
+        size="large" 
+        class="start-button"
+        [disabled]="!userName.trim() || isSubmitting"
+        (click)="startApp()">
+        <span>Commencer</span>
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Footer décoratif -->
+    <div class="footer-decoration">
+      <div class="wave"></div>
+    </div>
+  </div>
+</ion-content>

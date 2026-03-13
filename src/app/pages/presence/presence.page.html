@@ -6,24 +6,21 @@
 
 <ion-content fullscreen class="presence-content">
   <div class="hero-shell ion-padding">
+    <!-- Logo centré en haut -->
+    <div class="logo-section">
+      <div class="logo-container">
+        <img src="assets/images/logo.png" alt="Présence App" class="logo-image" />
+      </div>
+      <h1 class="user-name" *ngIf="userName">{{ userName }}</h1>
+      <p class="presence-instruction">Pointer votre présence</p>
+    </div>
+
     <div class="hero-card">
       <div class="hero-top">
         <div>
           <p class="eyebrow">Zone GPS sécurisée</p>
-          <h1>Pointer ma présence</h1>
         </div>
         <div class="status-pill" [ngClass]="statusColor">{{ statusMessage }}</div>
-      </div>
-
-      <div class="rules-grid">
-        <div class="rule-card">
-          <span class="rule-label">Rayon autorisé</span>
-          <strong>{{ allowedRadius }} m</strong>
-        </div>
-        <div class="rule-card">
-          <span class="rule-label">Heure d’arrivée</span>
-          <strong>{{ officeClock }}</strong>
-        </div>
       </div>
 
       <div class="ps-shell">
@@ -77,15 +74,56 @@
   </div>
 </ion-content>
 
+<!-- Modal d'informations -->
+<ion-modal [isOpen]="isInfoModalOpen" (willDismiss)="onInfoModalDismiss()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Informations</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeInfoModal()">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="info-content">
+        <h3>Règles de pointage</h3>
+        <div class="rules-grid">
+          <div class="rule-card">
+            <span class="rule-label">Rayon autorisé</span>
+            <strong>{{ allowedRadius }} m</strong>
+          </div>
+          <div class="rule-card">
+            <span class="rule-label">Heure d'arrivée</span>
+            <strong>{{ officeClock }}</strong>
+          </div>
+        </div>
+        <p class="info-text">
+          Pour valider votre présence, vous devez vous trouver dans un rayon de {{ allowedRadius }} mètres autour du lieu de travail et pointer avant {{ officeClock }}.
+        </p>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- FAB Button -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="openInfoModal()" color="primary">
+    <ion-icon name="help-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
 <ion-footer class="ion-no-border app-footer">
   <ion-toolbar>
     <div class="footer-nav">
       <a routerLink="/presence" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-        <ion-icon name="radio-button-on-outline"></ion-icon>
+        <ion-icon name="finger-print-outline"></ion-icon>
         <span>Badge</span>
       </a>
       <a routerLink="/reports" routerLinkActive="active-link">
-        <ion-icon name="stats-chart-outline"></ion-icon>
+        <ion-icon name="bar-chart-outline"></ion-icon>
         <span>Rapports</span>
       </a>
     </div>

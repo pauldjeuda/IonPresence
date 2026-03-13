@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { LocationService } from '../../services/location.service';
 import { PresenceRecord, PresenceStorageService } from '../../services/presence-storage.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-presence',
@@ -20,12 +21,28 @@ export class PresencePage {
   isLate?: boolean;
   timestamp?: string;
   lastRecord?: PresenceRecord;
+  userName?: string;
+  isInfoModalOpen: boolean = false;
 
   constructor(
     private locationService: LocationService,
-    private presenceStorage: PresenceStorageService
+    private presenceStorage: PresenceStorageService,
+    private userService: UserService
   ) {
     this.lastRecord = this.presenceStorage.getRecords()[0];
+    this.userName = this.userService.getUserName() || undefined;
+  }
+
+  openInfoModal() {
+    this.isInfoModalOpen = true;
+  }
+
+  closeInfoModal() {
+    this.isInfoModalOpen = false;
+  }
+
+  onInfoModalDismiss() {
+    this.isInfoModalOpen = false;
   }
 
   async checkPresence(): Promise<void> {

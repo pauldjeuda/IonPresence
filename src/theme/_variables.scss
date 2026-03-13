@@ -1,0 +1,50 @@
+// Variables de la charte graphique Presence App
+
+/* SCSS HEX */
+$ocean-blue: #1980BCff;
+$platinum: #EBEFEEff;
+$white: #FFFFFFff;
+$white-2: #FDFCFBff;
+$air-force-blue: #4D8298ff;
+
+/* SCSS RGB */
+$ocean-blue: rgba(25, 128, 188, 1);
+$platinum: rgba(235, 239, 238, 1);
+$white: rgba(255, 255, 255, 1);
+$white-2: rgba(253, 252, 251, 1);
+$air-force-blue: rgba(77, 130, 152, 1);
+
+/* SCSS Gradients */
+$gradient-top: linear-gradient(0deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-right: linear-gradient(90deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-bottom: linear-gradient(180deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-left: linear-gradient(270deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-top-right: linear-gradient(45deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-bottom-right: linear-gradient(135deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-top-left: linear-gradient(225deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-bottom-left: linear-gradient(315deg, #1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+$gradient-radial: radial-gradient(#1980BCff, #EBEFEEff, #FFFFFFff, #FDFCFBff, #4D8298ff);
+
+// Variables sémantiques pour l'application
+$primary-color: $ocean-blue;
+$secondary-color: $air-force-blue;
+$background-color: $white-2;
+$surface-color: $white;
+$accent-color: $platinum;
+
+// Variables pour les composants
+$card-background: rgba($platinum, 0.8);
+$card-border: rgba($air-force-blue, 0.2);
+$text-primary: darken($air-force-blue, 20%);
+$text-secondary: rgba($air-force-blue, 0.7);
+$text-muted: rgba($air-force-blue, 0.5);
+
+// Variables pour les états
+$success-bg: rgba(76, 175, 80, 0.1);
+$success-text: #4CAF50;
+$warning-bg: rgba(255, 152, 0, 0.1);
+$warning-text: #FF9800;
+$danger-bg: rgba(244, 67, 54, 0.1);
+$danger-text: #F44336;
+$info-bg: rgba($ocean-blue, 0.1);
+$info-text: $ocean-blue;
