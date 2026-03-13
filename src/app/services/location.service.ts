@@ -15,32 +15,27 @@ export class LocationService {
 
   async getCurrentPosition(): Promise<UserLocation> {
     if (Capacitor.isNativePlatform()) {
-      await this.ensureNativePermissions();
-      const position = await Geolocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 0
-      });
-
-      return this.normalizePosition(position);
-    }
-
-    return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject(new Error('Géolocalisation non supportée par cet appareil'));
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => resolve(this.normalizePosition(position)),
-        (error) => reject(new Error(this.mapBrowserError(error.code))),
-        {
+      try {
+        await this.ensureNativePermissions();
+        const position = await Geolocation.getCurrentPosition({
           enableHighAccuracy: true,
           timeout: 15000,
           maximumAge: 0
+        });
+
+        return this.normalizePosition(position);
+      } catch (error: any) {
+        const message = String(error?.message || '').toLowerCase();
+
+        if (message.includes('missing the following permissions') || message.includes('access_fine_location')) {
+          return this.getBrowserPosition();
         }
-      );
-    });
+
+        throw error;
+      }
+    }
+
+    return this.getBrowserPosition();
   }
 
   getDistance(origin: UserLocation, target: UserLocation): number {
@@ -62,13 +57,32 @@ export class LocationService {
   private async ensureNativePermissions(): Promise<void> {
     let permissions: PermissionStatus = await Geolocation.checkPermissions();
 
-    if (permissions.location === 'prompt' || permissions.coarseLocation === 'prompt') {
+    if (permissions.location !== 'granted' || permissions.coarseLocation !== 'granted') {
       permissions = await Geolocation.requestPermissions();
     }
 
     if (permissions.location !== 'granted' && permissions.coarseLocation !== 'granted') {
       throw new Error('Permission de géolocalisation refusée');
     }
+  }
+
+  private getBrowserPosition(): Promise<UserLocation> {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('Géolocalisation non supportée par cet appareil'));
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(this.normalizePosition(position)),
+        (error) => reject(new Error(this.mapBrowserError(error.code))),
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0
+        }
+      );
+    });
   }
 
   private normalizePosition(position: Position | GeolocationPosition): UserLocation {

@@ -6,35 +6,27 @@
 
 <ion-content fullscreen class="reports-content">
   <div class="reports-shell ion-padding">
-    <div class="summary-card">
-      <p class="eyebrow">Analyse mensuelle</p>
-      <h1>Suivi des pointages</h1>
+    <div class="summary-header">
+      <p class="eyebrow">Suivi des pointages</p>
+      <h1>Vue rapide</h1>
     </div>
 
-    <div class="details-card">
-      <div class="card-head">
-        <h2>Historique du mois</h2>
-        <span>{{ monthRecords.length }} enregistrement(s)</span>
-      </div>
+    <section class="stats-grid">
+      <article class="stat-card ontime">
+        <span class="label">À l'heure</span>
+        <strong>{{ monthStats?.onTimeCount || 0 }}</strong>
+      </article>
 
-      <div *ngIf="monthRecords.length === 0" class="empty-state">
-        Aucun pointage enregistré ce mois-ci.
-      </div>
+      <article class="stat-card late">
+        <span class="label">Retards</span>
+        <strong>{{ monthStats?.lateCount || 0 }}</strong>
+      </article>
 
-      <div *ngFor="let record of monthRecords" class="report-item" [ngClass]="record.isLate ? 'late' : 'ontime'">
-        <div class="report-main">
-          <div>
-            <strong>{{ record.isLate ? 'Présence en retard' : 'Présence à l\'heure' }}</strong>
-            <p>{{ formatDate(record.timestamp) }}</p>
-          </div>
-          <span class="distance-badge">{{ record.distance | number:'1.0-0' }} m</span>
-        </div>
-        <div class="report-subline">
-          <span>GPS ± {{ record.accuracy ? (record.accuracy | number:'1.0-0') : '—' }} m</span>
-          <span>{{ record.latitude | number:'1.4-4' }}, {{ record.longitude | number:'1.4-4' }}</span>
-        </div>
-      </div>
-    </div>
+      <article class="stat-card total">
+        <span class="label">Total</span>
+        <strong>{{ monthStats?.total || 0 }}</strong>
+      </article>
+    </section>
   </div>
 </ion-content>
 

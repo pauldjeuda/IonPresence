@@ -97,3 +97,44 @@ ion-button {
     --background-activated: darken($secondary-color, 10%);
   }
 }
+
+ion-alert.info-alert {
+  --backdrop-opacity: 0.35;
+
+  &::part(wrapper) {
+    border-radius: 18px;
+    background: linear-gradient(165deg, #0f4f75 0%, #1980bc 62%, #4d8298 100%);
+    color: #ebefee;
+    box-shadow: 0 16px 36px rgba(8, 35, 56, 0.45);
+    animation: popIn 0.24s ease;
+  }
+
+  &::part(header) {
+    color: #ebefee;
+    font-weight: 700;
+  }
+
+  &::part(message) {
+    color: rgba(235, 239, 238, 0.95);
+    line-height: 1.5;
+  }
+
+  button.alert-button {
+    color: #0f4f75;
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 8px;
+    font-weight: 700;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

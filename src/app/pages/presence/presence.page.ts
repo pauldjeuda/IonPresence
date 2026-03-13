@@ -22,7 +22,7 @@ export class PresencePage {
   timestamp?: string;
   lastRecord?: PresenceRecord;
   userName?: string;
-  isInfoModalOpen: boolean = false;
+  isInfoPopupOpen = false;
 
   constructor(
     private locationService: LocationService,
@@ -33,16 +33,16 @@ export class PresencePage {
     this.userName = this.userService.getUserName() || undefined;
   }
 
-  openInfoModal() {
-    this.isInfoModalOpen = true;
+  openInfoPopup() {
+    this.isInfoPopupOpen = true;
   }
 
-  closeInfoModal() {
-    this.isInfoModalOpen = false;
+  closeInfoPopup() {
+    this.isInfoPopupOpen = false;
   }
 
-  onInfoModalDismiss() {
-    this.isInfoModalOpen = false;
+  get infoPopupMessage(): string {
+    return `Rayon autorisé: ${this.allowedRadius} m<br/>Heure d'arrivée: ${this.officeClock}<br/><br/>Vous devez pointer dans cette zone avant l'heure limite.`;
   }
 
   async checkPresence(): Promise<void> {
@@ -87,7 +87,8 @@ export class PresencePage {
       this.presenceStorage.saveRecord(record);
       this.lastRecord = record;
     } catch (error: any) {
-      this.statusMessage = error?.message || 'Impossible de récupérer votre position';
+      const rawMessage = String(error?.message || '');
+      this.statusMessage = this.mapLocationError(rawMessage);
       this.statusColor = 'warning';
       this.isValidated = undefined;
     } finally {
@@ -103,6 +104,20 @@ export class PresencePage {
     return `${String(environment.workStartHour).padStart(2, '0')}:${String(environment.workStartMinute).padStart(2, '0')}`;
   }
 
+
+  private mapLocationError(message: string): string {
+    const lowered = message.toLowerCase();
+
+    if (lowered.includes('missing the following permissions') || lowered.includes('access_fine_location')) {
+      return 'Permission GPS manquante. Active la localisation de l'application.';
+    }
+
+    if (lowered.includes('refus')) {
+      return 'Permission de géolocalisation refusée';
+    }
+
+    return message || 'Impossible de récupérer votre position';
+  }
   formatDate(value?: string): string {
     if (!value) {
       return '—';
