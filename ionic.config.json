@@ -1,0 +1,7 @@
+{
+  "name": "presence-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

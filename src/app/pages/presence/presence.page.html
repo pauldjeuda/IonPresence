@@ -1,0 +1,93 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Badge de présence</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="presence-content">
+  <div class="hero-shell ion-padding">
+    <div class="hero-card">
+      <div class="hero-top">
+        <div>
+          <p class="eyebrow">Zone GPS sécurisée</p>
+          <h1>Pointer ma présence</h1>
+        </div>
+        <div class="status-pill" [ngClass]="statusColor">{{ statusMessage }}</div>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <span class="rule-label">Rayon autorisé</span>
+          <strong>{{ allowedRadius }} m</strong>
+        </div>
+        <div class="rule-card">
+          <span class="rule-label">Heure d’arrivée</span>
+          <strong>{{ officeClock }}</strong>
+        </div>
+      </div>
+
+      <div class="ps-shell">
+        <button class="ps-button" (click)="checkPresence()" [disabled]="isLoading" aria-label="Badger la présence">
+          <span class="ps-ring"></span>
+          <span class="ps-core">
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <ng-container *ngIf="!isLoading">
+              <ion-icon name="finger-print-outline"></ion-icon>
+              <small>BADGER</small>
+            </ng-container>
+          </span>
+        </button>
+      </div>
+
+      <p class="helper-text">
+        Appuie sur le bouton pour lancer la géolocalisation et valider ta présence dans la zone définie.
+      </p>
+    </div>
+
+    <div class="metrics-card" *ngIf="distance !== undefined || lastRecord">
+      <div class="card-title-wrap">
+        <h2>Dernier contrôle</h2>
+        <span *ngIf="lastRecord" class="mini-date">{{ formatDate(lastRecord.timestamp) }}</span>
+      </div>
+
+      <div class="metrics-grid" *ngIf="distance !== undefined">
+        <div class="metric-box">
+          <span>Distance</span>
+          <strong>{{ distance | number:'1.0-0' }} m</strong>
+        </div>
+        <div class="metric-box">
+          <span>Précision GPS</span>
+          <strong>{{ accuracy ? ('± ' + (accuracy | number:'1.0-0') + ' m') : '—' }}</strong>
+        </div>
+        <div class="metric-box">
+          <span>Statut</span>
+          <strong [class.late-text]="isLate">{{ isValidated ? (isLate ? 'Retard' : 'À l’heure') : 'Refusé' }}</strong>
+        </div>
+        <div class="metric-box">
+          <span>Horodatage</span>
+          <strong>{{ formatDate(timestamp) }}</strong>
+        </div>
+      </div>
+
+      <div *ngIf="lastRecord" class="location-strip">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>{{ lastRecord.latitude | number:'1.4-6' }}, {{ lastRecord.longitude | number:'1.4-6' }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border app-footer">
+  <ion-toolbar>
+    <div class="footer-nav">
+      <a routerLink="/presence" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <ion-icon name="radio-button-on-outline"></ion-icon>
+        <span>Badge</span>
+      </a>
+      <a routerLink="/reports" routerLinkActive="active-link">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <span>Rapports</span>
+      </a>
+    </div>
+  </ion-toolbar>
+</ion-footer>

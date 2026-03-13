@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Rapports de retards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="reports-content">
+  <div class="reports-shell ion-padding">
+    <div class="summary-card">
+      <p class="eyebrow">Analyse persistante</p>
+      <h1>Suivi hebdomadaire et mensuel</h1>
+
+      <div class="period-toggle">
+        <button [class.active]="selectedPeriod === 'week'" (click)="changePeriod('week')">Semaine</button>
+        <button [class.active]="selectedPeriod === 'month'" (click)="changePeriod('month')">Mois</button>
+      </div>
+
+      <div class="stats-grid" *ngIf="activeStats">
+        <div class="stat-box">
+          <span>Total</span>
+          <strong>{{ activeStats.total }}</strong>
+        </div>
+        <div class="stat-box soft-blue">
+          <span>À l’heure</span>
+          <strong>{{ activeStats.onTimeCount }}</strong>
+        </div>
+        <div class="stat-box soft-red">
+          <span>Retards</span>
+          <strong>{{ activeStats.lateCount }}</strong>
+        </div>
+        <div class="stat-box">
+          <span>Refusés</span>
+          <strong>{{ activeStats.invalidCount }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-card">
+      <div class="card-head">
+        <h2>Historique {{ periodLabel }}</h2>
+        <span>{{ activeRecords.length }} enregistrement(s)</span>
+      </div>
+
+      <div *ngIf="activeRecords.length === 0" class="empty-state">
+        Aucun pointage enregistré pour cette période.
+      </div>
+
+      <div *ngFor="let record of activeRecords" class="report-item" [ngClass]="record.isLate ? 'late' : 'ontime'">
+        <div class="report-main">
+          <div>
+            <strong>{{ record.validated ? (record.isLate ? 'Présence en retard' : 'Présence à l’heure') : 'Présence refusée' }}</strong>
+            <p>{{ formatDate(record.timestamp) }}</p>
+          </div>
+          <span class="distance-badge">{{ record.distance | number:'1.0-0' }} m</span>
+        </div>
+        <div class="report-subline">
+          <span>GPS ± {{ record.accuracy ? (record.accuracy | number:'1.0-0') : '—' }} m</span>
+          <span>{{ record.latitude | number:'1.4-4' }}, {{ record.longitude | number:'1.4-4' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border app-footer">
+  <ion-toolbar>
+    <div class="footer-nav">
+      <a routerLink="/presence" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <ion-icon name="radio-button-on-outline"></ion-icon>
+        <span>Badge</span>
+      </a>
+      <a routerLink="/reports" routerLinkActive="active-link">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <span>Rapports</span>
+      </a>
+    </div>
+  </ion-toolbar>
+</ion-footer>
