@@ -1,3 +1,6 @@
+/* Import des variables de thème */
+@import "../../../theme/variables";
+
 :host {
   --deep-bg: $gradient-bottom;
   --card-bg: $card-background;
