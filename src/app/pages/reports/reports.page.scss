@@ -1,168 +1,68 @@
-/* Import des variables de thème */
 @import "../../../theme/variables";
 
 :host {
-  --deep-bg: #ffffff;
-  --card-bg: #ffffff;
-  --card-border: #e0e0e0;
-  --text-main: #333333;
-  --text-soft: #666666;
-}
-
-ion-header {
-  position: relative;
-  z-index: 999;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --blue-deep: #0f4f75;
+  --blue-main: #1980bc;
+  --blue-soft: #4d8298;
 }
 
 ion-toolbar {
-  --background: transparent;
-  --color: var(--text-main);
-  background: #ffffff;
+  --background: rgba(15, 79, 117, 0.96);
+  --color: #ebefee;
 }
 
 .reports-content {
-  --background: var(--deep-bg);
+  --background: linear-gradient(165deg, var(--blue-deep) 0%, var(--blue-main) 58%, var(--blue-soft) 100%);
 }
 
 .reports-shell {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding-bottom: 96px;
+  gap: 16px;
+  padding-bottom: 110px;
+  animation: pageEnter 0.35s ease-out;
 }
 
 .summary-card,
 .details-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 28px;
-  padding: 20px;
-  box-shadow: 0 8px 24px rgba($air-force-blue, 0.15);
-  backdrop-filter: blur(10px);
-}
-
-.eyebrow {
-  margin: 0 0 8px;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--text-soft);
-}
-
-h1, h2 {
-  margin: 0;
-  color: var(--text-main);
-}
-
-.period-toggle {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 18px;
-
-  button {
-    border: none;
-    border-radius: 16px;
-    padding: 12px 14px;
-    background: rgba($platinum, 0.3);
-    color: $text-secondary;
-    font-weight: 700;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: rgba($platinum, 0.5);
-    }
-  }
-
-  .active {
-    background: rgba($primary-color, 0.15);
-    color: $primary-color;
-    box-shadow: inset 0 0 0 2px rgba($primary-color, 0.2);
-    font-weight: 800;
-  }
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.stat-box {
-  border-radius: 20px;
+  background: transparent;
+  border: 1px solid rgba(235, 239, 238, 0.28);
+  border-radius: 16px;
   padding: 16px;
-  background: rgba($platinum, 0.3);
-  border: 1px solid rgba($air-force-blue, 0.1);
-
-  span {
-    color: $text-secondary;
-    font-size: 0.9rem;
-  }
-
-  strong {
-    display: block;
-    margin-top: 10px;
-    color: $text-primary;
-    font-size: 1.35rem;
-  }
 }
 
-.soft-blue {
-  background: rgba($primary-color, 0.15);
-  border: 1px solid rgba($primary-color, 0.2);
-}
-
-.soft-red {
-  background: rgba($danger-text, 0.15);
-  border: 1px solid rgba($danger-text, 0.2);
+.eyebrow,
+h1,
+h2,
+.card-head span,
+.empty-state,
+.report-main strong,
+.report-main p,
+.report-subline,
+.distance-badge {
+  color: #ebefee;
 }
 
 .card-head {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-
-  span {
-    color: var(--text-soft);
-    font-size: 0.86rem;
-  }
 }
 
 .empty-state {
-  color: $text-secondary;
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba($platinum, 0.2);
+  border: 1px dashed rgba(235, 239, 238, 0.35);
+  border-radius: 10px;
+  padding: 12px;
   text-align: center;
-  border: 1px dashed rgba($air-force-blue, 0.3);
 }
 
 .report-item {
-  border-radius: 22px;
-  padding: 16px;
-  margin-bottom: 12px;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  &.late {
-    background: rgba($danger-text, 0.12);
-    border-color: rgba($danger-text, 0.2);
-  }
-
-  &.ontime {
-    background: rgba($success-text, 0.12);
-    border-color: rgba($success-text, 0.2);
-  }
+  border: 1px solid rgba(235, 239, 238, 0.24);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
 }
 
 .report-main,
@@ -172,93 +72,58 @@ h1, h2 {
   gap: 12px;
 }
 
-.report-main strong {
-  color: $text-primary;
-}
-
-.report-main p,
-.report-subline {
-  margin: 6px 0 0;
-  color: $text-secondary;
-  font-size: 0.88rem;
-}
-
 .distance-badge {
-  align-self: flex-start;
-  white-space: nowrap;
-  padding: 8px 10px;
+  border: 1px solid rgba(235, 239, 238, 0.3);
   border-radius: 999px;
-  background: rgba($primary-color, 0.15);
-  color: $primary-color;
-  font-weight: 700;
-  font-size: 0.82rem;
-  border: 1px solid rgba($primary-color, 0.2);
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .report-subline {
-  margin-top: 12px;
+  margin-top: 10px;
   flex-wrap: wrap;
 }
 
 .app-footer ion-toolbar {
-  --background: rgba(255, 255, 255, 0.95);
-  --border-color: #e0e0e0;
-  border-radius: 24px 24px 0 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 998;
-  background: rgba(255, 255, 255, 0.95);
+  --background: rgba(15, 79, 117, 0.98);
 }
 
 .footer-nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  padding: 8px 14px 14px;
 
   a {
     text-decoration: none;
-    color: $text-secondary;
+    color: #ebefee;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    padding: 10px;
-    border-radius: 18px;
-    background: rgba($platinum, 0.2);
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: rgba($platinum, 0.4);
-    }
+    padding: 14px 8px;
   }
 
   .active-link {
-    color: $primary-color;
-    background: rgba($primary-color, 0.1);
-    box-shadow: inset 0 0 0 2px rgba($primary-color, 0.2);
-    font-weight: 600;
-  }
-
-  ion-icon {
-    font-size: 1.25rem;
-  }
-
-  span {
-    font-size: 0.8rem;
+    background: rgba(77, 130, 152, 0.5);
     font-weight: 600;
   }
 }
 
 @media (max-width: 420px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
   .card-head,
   .report-main,
   .report-subline {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
