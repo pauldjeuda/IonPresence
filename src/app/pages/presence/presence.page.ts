@@ -109,7 +109,7 @@ export class PresencePage {
     const lowered = message.toLowerCase();
 
     if (lowered.includes('missing the following permissions') || lowered.includes('access_fine_location')) {
-      return 'Permission GPS manquante. Active la localisation de l'application.';
+      return 'Permission GPS manquante. Active la localisation de l application';
     }
 
     if (lowered.includes('refus')) {

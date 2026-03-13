@@ -6,8 +6,9 @@
 }
 
 ion-toolbar {
-  --background: rgba(15, 79, 117, 0.96);
-  --color: #ebefee;
+  --background: #ffffff;
+  --color: var(--blue-deep);
+  border-bottom: 1px solid #e8eef3;
 }
 
 .toolbar-main {
@@ -21,14 +22,14 @@ ion-toolbar {
 .toolbar-user {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #ebefee;
-  background: rgba(255, 255, 255, 0.18);
+  color: var(--blue-deep);
+  background: #eef6fb;
   padding: 6px 10px;
   border-radius: 999px;
 }
 
 .presence-content {
-  --background: linear-gradient(165deg, var(--blue-deep) 0%, var(--blue-main) 58%, var(--blue-soft) 100%);
+  --background: #ffffff;
 }
 
 .hero-shell {
@@ -53,25 +54,32 @@ ion-toolbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.16);
+  background: #eef6fb;
+  box-shadow:
+    0 8px 18px rgba(15, 79, 117, 0.08),
+    0 2px 6px rgba(15, 79, 117, 0.08);
 
   ion-icon {
-    color: #fff;
+    color: var(--blue-main);
     font-size: 3.1rem;
   }
 }
 
 .presence-instruction {
-  color: rgba(235, 239, 238, 0.95);
+  color: var(--blue-deep);
   margin: 0;
+  opacity: 0.9;
 }
 
 .hero-panel,
 .metrics-panel {
-  background: rgba(15, 79, 117, 0.22);
+  background: #ffffff;
   border-radius: 18px;
   padding: 16px;
-  backdrop-filter: blur(1px);
+  box-shadow:
+    0 10px 24px rgba(12, 41, 66, 0.08),
+    0 2px 8px rgba(12, 41, 66, 0.05);
+  border: 1px solid #edf3f7;
 }
 
 .hero-top,
@@ -82,16 +90,22 @@ ion-toolbar {
   gap: 8px;
 }
 
-h2,
+h2 {
+  color: var(--blue-deep);
+}
+
 .eyebrow,
 .mini-date,
 .helper-text,
 .metric-box span,
 .location-strip,
-.metric-box strong,
 .location-strip ion-icon,
 .location-strip span {
-  color: #ebefee;
+  color: #5f7383;
+}
+
+.metric-box strong {
+  color: var(--blue-deep);
 }
 
 .status-pill {
@@ -102,23 +116,23 @@ h2,
   max-width: 170px;
 
   &.medium {
-    background: rgba(235, 239, 238, 0.22);
-    color: #ebefee;
+    background: #eef4f8;
+    color: var(--blue-deep);
   }
 
   &.success {
-    background: rgba(36, 186, 111, 0.18);
-    color: #d2ffe7;
+    background: #e8f9ef;
+    color: #1c8f57;
   }
 
   &.danger {
-    background: rgba(255, 75, 75, 0.2);
-    color: #ffd5d5;
+    background: #ffeaea;
+    color: #d94b4b;
   }
 
   &.warning {
-    background: rgba(255, 172, 58, 0.25);
-    color: #fff0d6;
+    background: #fff3e3;
+    color: #d9811f;
   }
 }
 
@@ -134,19 +148,25 @@ h2,
   border-radius: 50%;
   border: none;
   background: radial-gradient(circle at 30% 30%, #79a7c4 0%, #1980bc 55%, #0f4f75 100%);
-  box-shadow: 0 16px 30px rgba(5, 31, 52, 0.35), inset 0 -12px 22px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 18px 34px rgba(5, 31, 52, 0.26),
+    inset 0 -12px 22px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  animation: psGlow 1.8s infinite ease-in-out;
 
   &:active {
     transform: scale(0.97);
-    box-shadow: 0 9px 20px rgba(5, 31, 52, 0.3), inset 0 -8px 16px rgba(0, 0, 0, 0.24);
+    box-shadow:
+      0 10px 22px rgba(5, 31, 52, 0.24),
+      inset 0 -8px 16px rgba(0, 0, 0, 0.24);
   }
 
   &:disabled {
     opacity: 0.7;
+    animation: none;
   }
 }
 
@@ -178,9 +198,11 @@ h2,
 }
 
 .metric-box {
-  background: rgba(255, 255, 255, 0.12);
+  background: #f7fbfe;
   border-radius: 12px;
   padding: 10px;
+  border: 1px solid #e6f0f6;
+  box-shadow: 0 4px 10px rgba(15, 79, 117, 0.05);
 }
 
 .location-strip {
@@ -195,10 +217,17 @@ h2,
 }
 
 ion-fab-button {
-  --background: #0f4f75;
-  --color: #ebefee;
-  --box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
-  animation: fabShimmer 1s infinite ease-in-out;
+  --background: #ffffff;
+  --color: var(--blue-deep);
+  --box-shadow: 0 10px 22px rgba(15, 79, 117, 0.16);
+  border: 1px solid #e5edf3;
+}
+
+.help-mark {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--blue-deep);
 }
 
 .app-footer {
@@ -208,7 +237,7 @@ ion-fab-button {
     --background: #ffffff;
     --color: #0f4f75;
     border-radius: 20px 20px 0 0;
-    box-shadow: 0 -8px 24px rgba(9, 45, 71, 0.25);
+    box-shadow: 0 -8px 24px rgba(9, 45, 71, 0.12);
   }
 }
 
@@ -232,6 +261,10 @@ ion-fab-button {
     background: #e7f1f8;
     font-weight: 700;
   }
+}
+
+.late-text {
+  color: #d94b4b;
 }
 
 @media (max-width: 420px) {
@@ -261,14 +294,14 @@ ion-fab-button {
   }
 }
 
-@keyframes fabShimmer {
+@keyframes psGlow {
   0%,
   100% {
     transform: scale(1);
     filter: brightness(1);
   }
   50% {
-    transform: scale(1.06);
-    filter: brightness(1.2);
+    transform: scale(1.03);
+    filter: brightness(1.12);
   }
 }
