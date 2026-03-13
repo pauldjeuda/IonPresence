@@ -9,25 +9,6 @@
     <div class="summary-card">
       <p class="eyebrow">Analyse mensuelle</p>
       <h1>Suivi des pointages</h1>
-
-      <div class="stats-grid" *ngIf="monthStats">
-        <div class="stat-box">
-          <span>Total</span>
-          <strong>{{ monthStats.total }}</strong>
-        </div>
-        <div class="stat-box soft-blue">
-          <span>À l'heure</span>
-          <strong>{{ monthStats.onTimeCount }}</strong>
-        </div>
-        <div class="stat-box soft-red">
-          <span>Retards</span>
-          <strong>{{ monthStats.lateCount }}</strong>
-        </div>
-        <div class="stat-box">
-          <span>Validés</span>
-          <strong>{{ monthStats.validatedCount }}</strong>
-        </div>
-      </div>
     </div>
 
     <div class="details-card">

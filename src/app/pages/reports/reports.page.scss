@@ -2,16 +2,24 @@
 @import "../../../theme/variables";
 
 :host {
-  --deep-bg: $gradient-bottom;
-  --card-bg: $card-background;
-  --card-border: $card-border;
-  --text-main: $text-primary;
-  --text-soft: $text-secondary;
+  --deep-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --text-main: #333333;
+  --text-soft: #666666;
+}
+
+ion-header {
+  position: relative;
+  z-index: 999;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 ion-toolbar {
   --background: transparent;
   --color: var(--text-main);
+  background: #ffffff;
 }
 
 .reports-content {
@@ -193,8 +201,13 @@ h1, h2 {
 }
 
 .app-footer ion-toolbar {
-  --background: rgba($white, 0.95);
-  --border-color: $card-border;
+  --background: rgba(255, 255, 255, 0.95);
+  --border-color: #e0e0e0;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 998;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .footer-nav {

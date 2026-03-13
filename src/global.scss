@@ -44,15 +44,15 @@
   --ion-color-tertiary-shade: darken($platinum, 10%);
   --ion-color-tertiary-tint: lighten($platinum, 10%);
 
-  --ion-background-color: #{$white-2};
-  --ion-background-color-rgb: 253, 252, 251;
-  --ion-text-color: #{$text-primary};
-  --ion-text-color-rgb: 77, 130, 152;
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+  --ion-text-color: #333333;
+  --ion-text-color-rgb: 51, 51, 51;
 
-  --ion-toolbar-background: #{$white};
-  --ion-toolbar-border-color: #{$card-border};
-  --ion-tab-bar-background: #{$white};
-  --ion-tab-bar-border-color: #{$card-border};
+  --ion-toolbar-background: #ffffff;
+  --ion-toolbar-border-color: #e0e0e0;
+  --ion-tab-bar-background: #ffffff;
+  --ion-tab-bar-border-color: #e0e0e0;
 }
 
 /* Styles globaux personnalisés */

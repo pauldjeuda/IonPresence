@@ -40,7 +40,17 @@ jobs:
         run: npm install
 
       - name: Install Ionic and Capacitor CLI
-        run: npm install -g @ionic/cli @capacitor/cli
+        run: npm install -g @ionic/cli @capacitor/cli cordova-res
+
+      - name: Generate app icons
+        run: |
+          if [ -f "resources/icon.png" ]; then
+            echo "Generating app icons..."
+            cordova-res android --skip-config --copy
+            echo "Icons generated successfully"
+          else
+            echo "No icon.png found in resources/, using default icons"
+          fi
 
       - name: Build web app
         run: npm run build
